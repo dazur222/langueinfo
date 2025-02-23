@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="{{url_for('static',filename = 'babylon.js')}}"></script>
+</head>
+<body>
+    <h1>Create your own language</h1>
+
+    <form action="/post_language" method="post">
+        <p>Introduce the name of your language</p>
+        <input type="text" name="nombre" id="">
+        <p>Introduce it's ISO 639-3 code</p>
+        <input type="text" name="iso" id="">
+        <!-- concatemanos los paises cada vez que se introduce uno -->
+        
+        <p>Introduce it's characters</p>
+        <input type="text" name="characters" id="">
+        <p>Introduce it's linguistic roots</p>
+        <input type="text" name="roots" id="">
+        <p>Introduce the number of native speakers</p>
+        <input type="text" name="speakers" id="">
+        
+        <button onclick="getLanguages()">Add!</button>
+    </form>
+
+    <div id="languages_display"></div>
+
+</body>
+</html>
