@@ -9,23 +9,24 @@
 <body>
     <h1>Create your own language</h1>
 
-    <form action="/post_language" method="post">
+    <form>
         <p>Introduce the name of your language</p>
-        <input type="text" name="nombre" id="">
+        <input type="text" name="name" id="name">
         <p>Introduce it's ISO 639-3 code</p>
-        <input type="text" name="iso" id="">
+        <input type="text" name="iso" id="iso">
         <!-- concatemanos los paises cada vez que se introduce uno -->
         
         <p>Introduce it's characters</p>
-        <input type="text" name="characters" id="">
+        <input type="text" name="characters" id="characters">
         <p>Introduce it's linguistic roots</p>
-        <input type="text" name="roots" id="">
+        <input type="text" name="roots" id="roots">
         <p>Introduce the number of native speakers</p>
-        <input type="text" name="speakers" id="">
+        <input type="text" name="speakers" id="speakers">
         
-        <button onclick="getLanguages()">Add!</button>
+        <button onclick="postLanguage()">Add!</button>
     </form>
 
+    <button onclick="getLanguages()">Get languages!</button>
     <div id="languages_display"></div>
 
 </body>
