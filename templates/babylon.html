@@ -3,30 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Language</title>
     <script src="{{url_for('static',filename = 'babylon.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'styles.css')}}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+        form p {
+            margin: 0.5em 0;
+        }
+        form input {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+        button {
+            padding: 0.5em 1em;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
-    <h1>Create your own language</h1>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/babylon">Enter Babylon</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Create your own language</h1>
 
-    <form action="/post_language" method="post">
-        <p>Introduce the name of your language</p>
-        <input type="text" name="nombre" id="">
-        <p>Introduce it's ISO 639-3 code</p>
-        <input type="text" name="iso" id="">
-        <!-- concatemanos los paises cada vez que se introduce uno -->
-        
-        <p>Introduce it's characters</p>
-        <input type="text" name="characters" id="">
-        <p>Introduce it's linguistic roots</p>
-        <input type="text" name="roots" id="">
-        <p>Introduce the number of native speakers</p>
-        <input type="text" name="speakers" id="">
-        
-        <button onclick="getLanguages()">Add!</button>
-    </form>
+        <form action="/post_language" method="post">
+            <p>Introduce the name of your language</p>
+            <input type="text" name="nombre" id="">
+            <p>Introduce its ISO 639-3 code</p>
+            <input type="text" name="iso" id="">
+            <!-- concatemanos los paises cada vez que se introduce uno -->
+            <p>Introduce its characters</p>
+            <input type="text" name="characters" id="">
+            <p>Introduce its linguistic root</p>
+            <input type="text" name="roots" id="">
+            <p>Introduce the number of native speakers</p>
+            <input type="text" name="speakers" id="">
+            
+            <button type="submit">Add!</button>
+        </form>
 
-    <div id="languages_display"></div>
-
+        <div id="languages_display"></div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Language Builder. All rights reserved.</p>
+    </footer>
 </body>
 </html>
