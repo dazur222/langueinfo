@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, jsonify
 from flask import request
 
 from db import db_methods
@@ -14,25 +14,43 @@ def index():
 def babylon_render():
     return render_template('babylon.html')
 
-@app.route("/get_languages")
+@app.route("/get_languages", methods = ['GET'])
 def get_languages():
-    languages = db_methods.get_languages()
-    print(languages)
+        
+    try:
+        languages = db_methods.get_languages()
+        return jsonify(languages)
+
+    except Exception as e:
+        print(e)
+
+  
+
+# try:
+
+# except Exception as e:
+#     print(e)
 
 @app.route("/post_language", methods = ["POST"])
 def language_post():
+    try:
 
-    print("hola ruta")
-    name = request.form['nombre']
-    iso = request.form['iso']
-    #dejamos pendiente el de countries por pedos de db
+        req = request.json
+        print("el req es",req)
 
-    characters = request.form['characters']
-    #dejamos roots al lado por lo mismo que con los paises
-    speakers = request.form['speakers']
-    db_methods.add_language(name,iso,characters,speakers)
+        name = req['name']
+        iso = req['iso']
+        characters = req['characters']
+        speakers = req['speakers']
 
-    return render_template('babylon.html')
+        language = db_methods.add_language(name,iso,characters,speakers)
+        print(language)
+        return jsonify(language)
+    
+    except Exception as e:
+        print(e)
+
+    
 
 
 

@@ -7,13 +7,17 @@ def add_language(name,iso,characters,speakers):
         cursor = conn.cursor()
 
         cursor.execute(f" insert into Languages(Name,Iso,Characters,Speakers) values ('{name}','{iso}','{characters}',{speakers})")
+        cursor.execute(f"SELECT TOP 1 * FROM Languages ORDER BY Id DESC")
+        
+        columns = [column[0] for column in cursor.description]
+        rows = cursor.fetchall()    
 
-        cursor.execute("select * from Languages")
-        result = cursor.fetchall()
-        print(result)
+
         cursor.commit()
         cursor.close()
         conn.close()
+        
+        return dictionarify(columns,rows)
     except Exception as e:
         print(e)
     
@@ -24,11 +28,26 @@ def get_languages():
         cursor = conn.cursor()
 
         cursor.execute(f"select * from Languages")
-        result = cursor.fetchall()
+        
+        columns = [column[0] for column in cursor.description]
+        rows = cursor.fetchall()    
+
         cursor.close()
         conn.close()
-        print(result)
-        return result
+        
+        return dictionarify(columns,rows) 
         
     except Exception as e:
         print(e)
+
+def dictionarify(colums,rows):
+    try:
+
+        result =  [ dict(zip(colums,row)) for row in rows ]  
+        
+        
+        return result
+    
+    except Exception as e:
+        # Print the exception for debugging purposes
+        print(f" Error en la creacion del diccionario: {e}")
