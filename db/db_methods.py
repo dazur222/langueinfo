@@ -1,12 +1,12 @@
 from . import db_connection
 
 
-def add_language(name,iso,characters,speakers):
+def add_language(name,iso,characters,speakers,official):
     try:
         conn = db_connection.db_connect()
         cursor = conn.cursor()
 
-        cursor.execute(f" insert into Languages(Name,Iso,Characters,Speakers) values ('{name}','{iso}','{characters}',{speakers})")
+        cursor.execute(f" insert into Languages(Name,Iso,Characters,Speakers,Official) values ('{name}','{iso}','{characters}',{speakers},{official})")
         cursor.execute(f"SELECT TOP 1 * FROM Languages ORDER BY Id DESC")
         
         columns = [column[0] for column in cursor.description]
@@ -16,7 +16,7 @@ def add_language(name,iso,characters,speakers):
         cursor.commit()
         cursor.close()
         conn.close()
-        
+
         return dictionarify(columns,rows)
     except Exception as e:
         print(e)
