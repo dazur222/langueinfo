@@ -14,6 +14,10 @@ def index():
 def babylon_render():
     return render_template('babylon.html')
 
+@app.route("/language_compare")
+def language_compare_render():
+    return render_template('languagecompare.html')
+
 @app.route("/get_languages", methods = ['GET'])
 def get_languages():
         
@@ -26,13 +30,8 @@ def get_languages():
 
   
 
-# try:
-
-# except Exception as e:
-#     print(e)
-
 @app.route("/post_language", methods = ["POST"])
-def language_post():
+def post_language():
     try:
 
         req = request.json
@@ -43,14 +42,49 @@ def language_post():
         characters = req['characters']
         speakers = req['speakers']
 
-        language = db_methods.add_language(name,iso,characters,speakers)
+        language = db_methods.add_language(name,iso,characters,speakers,0)
         print(language)
         return jsonify(language)
     
     except Exception as e:
         print(e)
 
-    
+@app.route("/get_similarities", methods = ["POST"])
+def get_similarities():
+    try:
+        req = request.json
+
+        lang_a = req['lang_a']
+        lang_b = req['lang_b']
+
+        similarites = similarities(lang_a,lang_b)
+        print(similarites)
+        return jsonify(similarites)
+        
+    except Exception as e:
+        print(e)
+
+
+def similarities(language_a,language_b):
+    #recibe un diccionario con los datos de los dos lenguajes
+   
+    char_set_a = set(language_a['characters'])
+    char_set_b = set(language_b['characters'])
+
+    sim = char_set_a.intersection(char_set_b)
+
+
+    if sim != set():
+        full = 100
+        val = 100 / len(char_set_a)
+        for char in char_set_a:
+            if char not in sim:
+                full = full - val
+        sim = sorted(sim)
+        return { 'percentage' : round(full,2), 'similarities' : sim}
+    else:
+        return {'similarities' : "no similarities"}
+   
 
 
 
