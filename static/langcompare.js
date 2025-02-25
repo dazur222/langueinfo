@@ -40,9 +40,10 @@ async function getSimilarities() {
     let sim = await promesa.json()
 
     let display = document.getElementById('similarities_display')
-
+    let image = document.getElementById('simImage') 
     if(sim.similarities == "no similarities"){
         display.innerHTML = '<h1>There are no similarities</h1>'
+        image.src = 'static/lol.jpg'
     }
     else{
             
@@ -50,7 +51,7 @@ async function getSimilarities() {
         let info = `
         <p>The percentage of similiraty is of ${sim.percentage}%</p>
         <p>This are their characthers in common ${sim.similarities}</p>`
-
+        image.src = 'static/cool_dog.jpg'
 
         display.innerHTML = info        
     }
