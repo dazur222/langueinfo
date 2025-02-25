@@ -58,7 +58,7 @@ def get_similarities():
         lang_b = req['lang_b']
 
         similarites = similarities(lang_a,lang_b)
-
+        print(similarites)
         return jsonify(similarites)
         
     except Exception as e:
@@ -80,8 +80,8 @@ def similarities(language_a,language_b):
         for char in char_set_a:
             if char not in sim:
                 full = full - val
-
-        return { 'porcentage' : full, 'similiarities' : sim}
+        sim = sorted(sim)
+        return { 'percentage' : round(full,2), 'similarities' : sim}
     else:
         return {'similarities' : "no similarities"}
    

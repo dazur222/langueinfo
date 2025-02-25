@@ -4,9 +4,7 @@ async function getLanguages(){
     let promesa = await fetch("/get_languages")
     let languages = await promesa.json()
 
-    console.log(languages)
-
-    displayLanguages(languages)
+    return languages
 }
 
 async function postLanguage() {
@@ -47,6 +45,39 @@ async function postLanguage() {
         console.log(error)
     }
     
+}
+
+
+async function generateLanguage(){
+    let languages = await getLanguages()
+
+
+
+    let nombres = ["Papulenguaje","El dialecto perdido de la tribu autoctona Kh,ur","Juanasm","Ñoñil","Alck,ul"]
+    let iso = ["autismo","lol","hgf","tcp","sql"]
+    let roots = ["tribu amazona","aldama","papunaca tradicional"]
+    let char_set = "";
+    console.log(languages)
+    while(char_set.length < 8){
+        for(let lang of languages){
+            let num_random = Math.floor(Math.random() * (lang.characters.length))
+            
+            char_set += lang.characters[num_random]
+        }
+    }
+    let ran = Math.floor(Math.random()*nombres.length)
+    console.log(ran)
+    document.getElementById('name').value = nombres[ran]
+    
+       
+    document.getElementById('iso').value = iso[Math.floor(Math.random()*(nombres.length))]
+    document.getElementById('characters').value = char_set
+    document.getElementById('roots').value = roots[Math.floor(Math.random()*(roots.length))]
+
+    document.getElementById('speakers').value = Math.floor(Math.random() * 2000)
+
+
+    console.log(char_set)
 }
 function displayLanguages(languages){
     
