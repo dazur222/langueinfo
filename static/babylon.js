@@ -6,7 +6,7 @@ async function getLanguages(){
 
     console.log(languages)
 
-    displayLanguages(languages)
+    // displayLanguages(languages)
 }
 
 async function postLanguage() {
@@ -49,7 +49,7 @@ async function postLanguage() {
 }
 function displayLanguages(languages){
     
-    let display = document.getElementById("languages_display")
+    let display = document.getElementById("languages_display");
 
     let newDisplay
 

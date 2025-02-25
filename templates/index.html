@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>+Language</title>
     <link rel="stylesheet" href="/static/main.css">
+    <script src="{{url_for('static',filename = 'babylon.js')}}"></script>
 </head>
-<body>
+<body onload="getLanguages()">
     <header>
         <nav>
             <a href="/">Home</a>
@@ -20,6 +21,9 @@
         <br>
         <br>
         <img src="https://images.immediate.co.uk/production/volatile/sites/7/2016/01/GettyImages-567940171-04e94eb.jpg" alt="">
+        
+        <div id="languages_display"></div>
+
     </main>
     <footer>
         <p>&copy; 2025 Language Builder. All rights reserved.</p>
