@@ -13,25 +13,28 @@
         <nav>
             <a href="/">Home</a>
             <a href="/babylon">Enter Babylon</a>
+            <a href="/language_compare">Compare languages</a>
+            
         </nav>
     </header>
     <main>
         <h1>Create your own language</h1>
 
-        <form action="/post_language" method="post">
+        <form >
             <p>Introduce the name of your language</p>
-            <input type="text" name="nombre" id="">
+            <input type="text" name="name" id="name">
             <p>Introduce its ISO 639-3 code</p>
-            <input type="text" name="iso" id="">
-            <!-- concatemanos los paises cada vez que se introduce uno -->
-            <p>Introduce its characters</p>
-            <input type="text" name="characters" id="">
-            <p>Introduce its linguistic root</p>
-            <input type="text" name="roots" id="">
-            <p>Introduce the number of native speakers</p>
-            <input type="text" name="speakers" id="">
+            <input type="text" name="iso" id="iso">
             
-            <button type="submit">Add!</button>
+
+            <p>Introduce its characters</p>
+            <input type="text" name="characters" id="characters">
+            <p>Introduce its linguistic root</p>
+            <input type="text" name="roots" id="roots">
+            <p>Introduce the number of native speakers</p>
+            <input type="text" name="speakers" id="speakers">
+            
+            <button onclick="postLanguage()">Add!</button>
         </form>
 
         <div id="languages_display"></div>

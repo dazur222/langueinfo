@@ -30,6 +30,7 @@ async function postLanguage() {
         console.log(data)
 
         event.preventDefault()
+
         let promesa = await fetch("/post_language",{
             method : 'POST',
             headers : {
@@ -69,3 +70,4 @@ function displayLanguages(languages){
     display.innerHTML = newDisplay
 
 }
+

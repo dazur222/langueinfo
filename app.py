@@ -14,6 +14,10 @@ def index():
 def babylon_render():
     return render_template('babylon.html')
 
+@app.route("/language_compare")
+def language_compare_render():
+    return render_template('languagecompare.html')
+
 @app.route("/get_languages", methods = ['GET'])
 def get_languages():
         
@@ -26,13 +30,8 @@ def get_languages():
 
   
 
-# try:
-
-# except Exception as e:
-#     print(e)
-
 @app.route("/post_language", methods = ["POST"])
-def language_post():
+def post_language():
     try:
 
         req = request.json
